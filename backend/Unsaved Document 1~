@@ -1,0 +1,4 @@
+import json
+
+rt = json.load(open("rt.json"))
+fox = json.load(open("fox.json"))
