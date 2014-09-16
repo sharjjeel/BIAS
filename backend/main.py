@@ -49,3 +49,4 @@ for tup in sorted_dic:
     i += 1
 
 print output_dic
+json.dump(output_dic, open("similar.json", 'w'))
