@@ -1,3 +1,3 @@
 basically reads from RSS feeds and then compares titles of articles--and then joins on the articles that have a maximum match
 
-goal: read articles from different sources that talk about the same subject and compare their content
+goal: read articles from different sources that talk about the same subject and compare their 
