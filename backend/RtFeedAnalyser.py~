@@ -5,11 +5,15 @@ import re
 import operator
 import json
 
+# First feed to read
 rt = 'http://rt.com/rss/'
+# Parse using feedparser(open source)
 
 rtFeed = feedparser.parse(rt)
 
 dic = {}
+# This function simply replaces all non aplhanumerics into empty space and then
+# counts the occurances of each word
 
 def putter(dictionary, line, weight):
     line = re.sub('[^0-9a-zA-Z ]+', '', line)
@@ -21,12 +25,17 @@ def putter(dictionary, line, weight):
                 dictionary[a] = weight;
 
 i = 0
+# goes through each article and finds the keywords using putter
+# At the moment only uses title of the article, but can use other attributes
+# Sorts the keywords based the importance of the keyword
+
 for article in rtFeed["items"]:
     dic_new = {}
     putter(dic_new, article["title"], 2)
     sorted_dic = sorted(dic_new.iteritems(), key = operator.itemgetter(1), reverse = True)
     
-    dic[i] = (sorted_dic, article["link"])
+    dic[i] = (sorted_dic, article["link"], article["title"])
     i+=1
+# dumps in json format
 
 json.dump(dic, open("rt.json", 'w'))
